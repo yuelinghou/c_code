@@ -1,216 +1,72 @@
-//#define _CRT_SECURE_NO_WARNINGS 1
-//
-//#include<stdio.h>
-//
-//int main()
-//{
-//	int a = 0;
-//	int b = 0;
-//	int c = 0;
-//	int d = 0;
-//	int e = 0;
-//	for (a = 1; a <= 5; a++)
-//	{
-//		for (b = 1; b <= 5; b++)
-//		{
-//			for (c = 1; c <= 5; c++)
-//			{
-//				for (d = 1; d <= 5; d++)
-//				{
-//					for (e = 1; e <= 5; e++)
-//					{
-//						if (((b == 2) + (a == 3) == 1) &&
-//							((b == 2) + (e == 4) == 1) &&
-//							((c == 1) + (d == 2) == 1) &&
-//							((c == 5) + (d == 4) == 1) &&
-//							((e == 4) + (a == 1) == 1))
-//						{
-//							if (a*b*c*d*e == 120)
-//							{
-//								printf("a=%d b=%d c=%d d=%d e=%d\n", a, b, c, d, e);
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}
-//	return 0;
-//}
+#define _CRT_SECURE_NO_WARNINGS 1
 
 //#include<stdio.h>
 //
-//count计数法
-//size_t my_strlen(const char* string)
+//void* my_memcpy(void* dest, const void* src, unsigned int num)//传入数据可能是各种类型的，所以用void*接收
 //{
-//	size_t count = 0;
-//	while(*string)
+//	//void*
+//	//可以接收所有类型的指针
+//	//不可以进行解引用和加减整数的操作，但可以比较大小
+//	void* tmp = dest;
+//	while (num--)
 //	{
-//		count++;
-//		string++;
-//	}
-//	return count;
-//}
-//
-//递归法
-//size_t my_strlen(const char* string)
-//{
-//	if (*string)
-//		return 1 + my_strlen(string + 1);
-//	else
-//		return 0;
-//}
-//
-//指针-指针法
-//unsigned int my_strlen(const char* string)
-//{
-//	//const修饰的安全的指针交给一个不安全的char*的指针是要强制类型转换
-//	char* tmp = (char*)string;
-//	while (*string)
-//	{
-//		string++;
-//	}
-//	return string - tmp;
-//}
-//
-//int main()
-//{
-//	char arr[] = "abcdef";
-//	printf("%d\n", my_strlen(arr));
-//	return 0;
-//}
-
-//#include<stdio.h>
-//#include<assert.h>
-//
-//char* my_strcpy(char* dest, const char* src)
-//{
-//	assert(dest != NULL);
-//	assert(src != NULL);
-//	//先保存好目的地字符串首元素地址，最后返回它
-//	char* tmp = dest;
-//	while (*dest++ = *src++)
-//	{
-//		;
+//		//把指针类型转化为char*在解引用和+1/-1时可以访问一个字节
+//		*(char*)dest = *(char*)src;
+//		((char*)dest)++;
+//		((char*)src)++;
 //	}
 //	return tmp;
 //}
 //
 //int main()
 //{
-//	char arr1[] = "abcdefg";
-//	char arr2[] = "hijklmn";
-//	printf("arr1=%s\n", my_strcpy(arr1, arr2));
+//	char arr1[] = "abcdef";
+//	char arr2[] = "123456";
+//	printf("arr1=%s\n", (char*)my_memcpy(arr1, arr2, 3));//把arr2的前三个字节内容拷贝到arr1里
 //	return 0;
 //}
 
 //#include<stdio.h>
 //#include<assert.h>
 //
-//char* my_strcat(char* dest, const char* src)
-//{
-//	//先保存好目的地字符串首元素地址，最后要返回它
-//	char* tmp = dest;
-//	//断言，保证指针的有效性
-//	assert(dest != NULL);
-//	assert(src != NULL);
-//	//找到dest字符串中'\0'的地址
-//	while (*dest)
-//	{
-//		dest++;
-//	}
-//	//开始拼接(拷贝)
-//	while (*dest++ = *src++)
-//	{
-//		;
-//	}
-//	return tmp;
-//}
-//
-//int main()
-//{
-//	char arr1[30] = "abcdefg";
-//	char arr2[] = "hijklmn";
-//	printf("arr1=%s\n", my_strcat(arr1, arr2));
-//	return 0;
-//}
-
-//#include<stdio.h>
-//#include<assert.h>
-//
-//int my_strcmp(const char* str1, const char* str2)
+//void* my_memmove(void* dest, const void* src, unsigned int num)
 //{
 //	//断言，判断指针的有效性，防止野指针
-//	assert(str1 != NULL);
-//	assert(str2 != NULL);
-//	while (*str1==*str2)
+//	assert(dest != NULL);
+//	assert(src != NULL);
+//	//对于重叠拷贝
+//	//若dest<src,src从前向后拷贝
+//	//若dest>=src&&dest<=src+num，src从后向前拷贝
+//	//若dest>src,src从前和从后都可以拷贝
+//	void* tmp = dest;
+//	while (num--)
 //	{
-//		if (*str1 == '\0')//相等的情况
+//		if (dest < src)//从前向后拷贝
 //		{
-//			return 0;
+//			*(char*)dest = *(char*)src;
+//			++(char*)dest;
+//			++(char*)src;
 //		}
-//		str1++;
-//		str2++;
+//		else//从后向前拷贝
+//		{
+//			*((char*)dest + num) = *((char*)src + num);
+//			--(char*)dest;
+//			--(char*)src;
+//		}
 //	}
-//	if (*str1 > *str2)
-//		return 1;
-//	else
-//		return -1;
+//	return tmp;
 //}
 //
 //int main()
 //{
-//	char arr1[] = "abcd";
-//	char arr2[] = "abcz";
-//	printf("%d\n", my_strcmp(arr1, arr2));
-//	return 0;
-//}
-
-//#include<stdio.h>
-//#include<assert.h>
-//
-//char* my_strstr(const char* str1, const char* str2)//const修饰的安全的指针，在赋值给不安全的指针变量和作为返回值时要进行相应的强制类型转换
-//{
-//	assert(str1 != NULL);
-//	assert(str2 != NULL);
-//	char* cur = (char*)str1;
-//	//当需要查找的字符串为空字符串时，返回这个空字符串
-//	if (*str2 == '\0')
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int n = sizeof arr/sizeof arr[0];
+//	int* ret=(int*)(my_memmove(arr, arr + 2, 20));//把34567拷贝到12345上
+//	int i = 0;
+//	for (i = 0; i < n; i++)
 //	{
-//		return (char*)str2;
+//		printf("%d ", *ret);
+//		ret++;
 //	}
-//	while (*cur)
-//	{
-//		//记录匹配的位置
-//		char* s1 = cur;
-//		char* s2 = (char*)str2;
-//		//开始匹配
-//		while ((*s1 != '\0') && (*s2 != '\0') && (*s1 == *s2))
-//		{
-//			s1++;
-//			s2++;
-//		}
-//		if (*s2 == '\0')//匹配成功的情况
-//		{
-//			return cur;
-//		}
-//		if (*s1 == '\0')
-//		{
-//			return NULL;//匹配失败的一种情况，尽早退出（例如abc  abcdef）
-//		}
-//		cur++;
-//	}
-//	return NULL;//匹配失败，找不到子串
-//}
-//
-//int main()
-//{
-//	char arr1[] = "abbbcdef";
-//	char arr2[] = "bbc";
-//	char* ret = my_strstr(arr1, arr2);
-//	if (ret != NULL)
-//		printf("找到了：%s\n", ret);
-//	else
-//		printf("子串不存在\n");
 //	return 0;
 //}
