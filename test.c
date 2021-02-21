@@ -1,42 +1,19 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
 //#include<stdio.h>
+//#include<math.h>
 //
 //int main()
 //{
-//	printf("Hello World!\n");
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	printf("Welcome to You!\n");
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	printf("Programming in C is fun!\n");
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	int i = 0;
-//	for (i = 0; i < 4; i++)
+//	double x = 0.0;
+//	scanf("%lf", &x);
+//	if (x >= 0)
 //	{
-//		int j = 0;
-//		for (j = 0; j < 4 - i; j++)
-//		{
-//			printf("*");
-//		}
-//		printf("\n");
+//		printf("f(%.2lf) = %.2lf\n", x,sqrt(x));
+//	}
+//	else
+//	{
+//		printf("f(%.2lf) = %.2lf\n",x, pow(x + 1, 2) + 2 * x + 1.0 / x);
 //	}
 //	return 0;
 //}
@@ -45,95 +22,12 @@
 //
 //int main()
 //{
-//	printf("  A\nA   A\n  A\n");
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	printf("************\n  Welcome\n************\n");
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	printf("What is a computer?\n");
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	int i = 0;
-//	for (i = 0; i < 4; i++)
-//	{
-//		int j = 0;
-//		for (j = 0; j < i; j++)
-//		{
-//			printf(" ");
-//		}
-//		for (j = 0; j < 4 - i; j++)
-//		{
-//			if (j != 4 - i - 1)
-//				printf("* ");
-//			else
-//				printf("*");
-//		}
-//		printf("\n");
-//	}
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	printf("fahr = 150, celsius = %d\n",5*(150-32)/9);
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	printf("height = %.2lf\n",0.5*10*3*3);
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	printf("math = 87, eng = 72, comp = 93, average = %d", (87 + 72 + 93) / 3);
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	printf("9 = 3 * 3\n3 * 3 = 9");
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	printf("celsius = 26, fahr = %d", 9 * 26 / 5 + 32);
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	printf("152 = %d + %d*10 + %d*100\n", 152 % 10, 152 / 10 % 10, 152 / 100);
+//	int x1 = 0;
+//	int x2 = 0;
+//	int x3 = 0;
+//	int x4 = 0;
+//	scanf("%d%d%d%d", &x1, &x2, &x3, &x4);
+//	printf("Sum = %d; Average = %.1lf\n", x1 + x2 + x3 + x4, (x1 + x2 + x3 + x4) / 4.0);
 //	return 0;
 //}
 
@@ -143,13 +37,13 @@
 //{
 //	double x = 0.0;
 //	scanf("%lf", &x);
-//	if (x)
+//	if (x == 10)
 //	{
-//		printf("f(%.1lf) = %.1lf\n", x, 1 / x);
+//		printf("f(%.1lf) = %.1lf\n",x, 1 / x);
 //	}
 //	else
 //	{
-//		printf("f(0.0) = 0.0\n");
+//		printf("f(%.1lf) = %.1lf\n", x,x);
 //	}
 //	return 0;
 //}
@@ -158,21 +52,30 @@
 //
 //int main()
 //{
-//	int temporary = 0;
-//	scanf("%d", &temporary);
-//	printf("Celsius = %d\n", 5 * (temporary - 32) / 9);
+//	int x = 0;
+//	int y = 0;
+//	scanf("%d%d", &x, &y);
+//	printf("%d + %d = %d\n%d - %d = %d\n%d * %d = %d\n%d / %d = %d\n", x, y, x + y, x, y, x - y, x, y, x*y, x, y, x / y);
 //	return 0;
 //}
 
 //#include<stdio.h>
-//#include<math.h>
 //
 //int main()
 //{
-//	double money = 0.0;
-//	double year = 0.0;
-//	double rate = 0.0;
-//	scanf("%lf%lf%lf", &money, &year, &rate);
-//	printf("interest = %.2lf\n", money*pow(1 + rate, year) - money);
+//	int num = 0;
+//	scanf("%d", &num);
+//	if (num>=0&&num <= 50)
+//	{
+//		printf("cost = %.2lf\n", num*0.53);
+//	}
+//	else if (num > 50)
+//	{
+//		printf("cost = %.2lf\n", 50*0.53+(num-50)*0.58);
+//	}
+//	else
+//	{
+//		printf("Invalid Value!\n");
+//	}
 //	return 0;
 //}
