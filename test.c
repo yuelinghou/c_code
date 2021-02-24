@@ -1,81 +1,61 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-//#include<stdio.h>
-//#include<math.h>
-//
-//int main()
-//{
-//	double x = 0.0;
-//	scanf("%lf", &x);
-//	if (x >= 0)
-//	{
-//		printf("f(%.2lf) = %.2lf\n", x,sqrt(x));
-//	}
-//	else
-//	{
-//		printf("f(%.2lf) = %.2lf\n",x, pow(x + 1, 2) + 2 * x + 1.0 / x);
-//	}
-//	return 0;
-//}
+#include"contact.h"
 
-//#include<stdio.h>
-//
-//int main()
-//{
-//	int x1 = 0;
-//	int x2 = 0;
-//	int x3 = 0;
-//	int x4 = 0;
-//	scanf("%d%d%d%d", &x1, &x2, &x3, &x4);
-//	printf("Sum = %d; Average = %.1lf\n", x1 + x2 + x3 + x4, (x1 + x2 + x3 + x4) / 4.0);
-//	return 0;
-//}
+//菜单函数
+void menu()
+{
+	printf("****************************************\n");
+	printf("***** 1.add               2.del    *****\n");
+	printf("***** 3.search            4.modify *****\n");
+	printf("***** 5.show              6.sort   *****\n");
+	printf("***** 7.save              0.exit   *****\n");
+	printf("****************************************\n");
+}
 
-//#include<stdio.h>
-//
-//int main()
-//{
-//	double x = 0.0;
-//	scanf("%lf", &x);
-//	if (x == 10)
-//	{
-//		printf("f(%.1lf) = %.1lf\n",x, 1 / x);
-//	}
-//	else
-//	{
-//		printf("f(%.1lf) = %.1lf\n", x,x);
-//	}
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	int x = 0;
-//	int y = 0;
-//	scanf("%d%d", &x, &y);
-//	printf("%d + %d = %d\n%d - %d = %d\n%d * %d = %d\n%d / %d = %d\n", x, y, x + y, x, y, x - y, x, y, x*y, x, y, x / y);
-//	return 0;
-//}
-
-//#include<stdio.h>
-//
-//int main()
-//{
-//	int num = 0;
-//	scanf("%d", &num);
-//	if (num>=0&&num <= 50)
-//	{
-//		printf("cost = %.2lf\n", num*0.53);
-//	}
-//	else if (num > 50)
-//	{
-//		printf("cost = %.2lf\n", 50*0.53+(num-50)*0.58);
-//	}
-//	else
-//	{
-//		printf("Invalid Value!\n");
-//	}
-//	return 0;
-//}
+//主函数
+int main()
+{
+	struct Contact con = {0};
+	InitContact(&con);
+	int input = 0;
+	do
+	{
+		menu();//显示通讯录功能
+		printf("请选择:>");
+		scanf("%d", &input);
+		switch (input)
+		{
+		case EXIT://0
+			SaveContact(&con);
+			DistroyContact(&con);
+			break;
+		case ADD://1
+			AddContact(&con);
+			break;
+		case DEL://2
+			DelContact(&con);
+			break;
+		case SEARCH://3
+			SearchContact(&con);
+			break;
+		case MODIFY://4
+			ModifyContact(&con);
+			break;
+		case SHOW://5
+			ShowContact(&con);
+			break;
+		case SORT://6
+			SortContact(&con);
+			ShowContact(&con);
+			break;
+		case SAVE://7
+			SaveContact(&con);
+			break;
+		default:
+			printf("选择错误，请重新选择\n");
+			break;
+		}
+	} while (input);
+	return 0;
+}
